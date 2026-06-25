@@ -53,6 +53,10 @@
 		<Unit filename="fuse.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="initialisatie.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="initialisatie.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

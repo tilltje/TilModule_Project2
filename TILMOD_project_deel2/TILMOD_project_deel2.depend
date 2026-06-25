@@ -5,3 +5,17 @@
 1781262828 source:c:\users\tillb\documents\programmer_hhs\avg_v2_project\tilmodule_project2\tilmod_project_deel2\main.c
 	<avr/io.h>
 
+1782120098 source:c:\users\annev\documents\github\tilmodule_project2\tilmodule_project2\tilmod_project_deel2\fuse.c
+	<avr/io.h>
+
+1782372492 source:c:\users\annev\documents\github\tilmodule_project2\tilmodule_project2\tilmod_project_deel2\main.c
+	<avr/io.h>
+
+1782372493 source:c:\users\annev\documents\github\tilmodule_project2\tilmodule_project2\tilmod_project_deel2\initialisatie.c
+	<avr/io.h>
+	<avr/interrupt.h>
+	<util/delay.h>
+	"initialisatie.h"
+
+1782372539 c:\users\annev\documents\github\tilmodule_project2\tilmodule_project2\tilmod_project_deel2\initialisatie.h
+
