@@ -3,13 +3,13 @@ bin\Debug\TILMOD_project_deel2.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800200  00000134  000001c8  2**0
+  0 .data         00000000  00800200  00000136  000001ca  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000134  00000000  00000000  00000094  2**1
+  1 .text         00000136  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .fuse         00000003  00820000  00820000  000001c8  2**0
+  2 .fuse         00000003  00820000  00820000  000001ca  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .comment      00000012  00000000  00000000  000001cb  2**0
+  3 .comment      00000012  00000000  00000000  000001cd  2**0
                   CONTENTS, READONLY
   4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  000001e0  2**2
                   CONTENTS, READONLY, OCTETS
@@ -19,13 +19,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
   7 .debug_abbrev 00000c6f  00000000  00000000  00001045  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_line   0000028a  00000000  00000000  00001cb4  2**0
+  8 .debug_line   0000029c  00000000  00000000  00001cb4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_frame  00000058  00000000  00000000  00001f40  2**2
+  9 .debug_frame  00000058  00000000  00000000  00001f50  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_str    0000052d  00000000  00000000  00001f98  2**0
+ 10 .debug_str    0000052d  00000000  00000000  00001fa8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_line_str 000001b7  00000000  00000000  000024c5  2**0
+ 11 .debug_line_str 000001b7  00000000  00000000  000024d5  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -98,8 +98,8 @@ Disassembly of section .text:
   ee:	cd bf       	out	0x3d, r28	; 61
   f0:	00 e0       	ldi	r16, 0x00	; 0
   f2:	0c bf       	out	0x3c, r16	; 60
-  f4:	0e 94 8f 00 	call	0x11e	; 0x11e <main>
-  f8:	0c 94 98 00 	jmp	0x130	; 0x130 <_exit>
+  f4:	0e 94 90 00 	call	0x120	; 0x120 <main>
+  f8:	0c 94 99 00 	jmp	0x132	; 0x132 <_exit>
 
 000000fc <__bad_interrupt>:
   fc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -175,42 +175,46 @@ void initialisatie_knopje(void) {
  11a:	81 98       	cbi	0x10, 1	; 16
 
 0000011c <.Loc.29>:
+    PORTF |= (1 << PF1);
+ 11c:	89 9a       	sbi	0x11, 1	; 17
+
+0000011e <.Loc.31>:
 
 
 }
- 11c:	08 95       	ret
+ 11e:	08 95       	ret
 
-0000011e <main>:
+00000120 <main>:
 #include <avr/io.h>
 #include "initialisatie.h"
 
 int main(void)
 {
     initialisatie_communicatie();
- 11e:	0e 94 80 00 	call	0x100	; 0x100 <initialisatie_communicatie>
+ 120:	0e 94 80 00 	call	0x100	; 0x100 <initialisatie_communicatie>
 
-00000122 <.LVL0>:
+00000124 <.LVL0>:
     initialisatie_knopje();
- 122:	0e 94 8d 00 	call	0x11a	; 0x11a <initialisatie_knopje>
+ 124:	0e 94 8d 00 	call	0x11a	; 0x11a <initialisatie_knopje>
 
-00000126 <.LVL1>:
- 126:	01 c0       	rjmp	.+2      	; 0x12a <.L2>
+00000128 <.LVL1>:
+ 128:	01 c0       	rjmp	.+2      	; 0x12c <.L2>
 
-00000128 <.L5>:
+0000012a <.L5>:
 
     while(1) {
-        if ((PORTF & (1 << PF1)) == 0) {
+        if ((PINF & (1 << PF1)) == 0) {
             NEXT_MOD_PORT |= (1<< NEXT_MOD);
- 128:	a1 9a       	sbi	0x14, 1	; 20
+ 12a:	a1 9a       	sbi	0x14, 1	; 20
 
-0000012a <.L2>:
-        if ((PORTF & (1 << PF1)) == 0) {
- 12a:	89 99       	sbic	0x11, 1	; 17
- 12c:	fe cf       	rjmp	.-4      	; 0x12a <.L2>
- 12e:	fc cf       	rjmp	.-8      	; 0x128 <.L5>
+0000012c <.L2>:
+        if ((PINF & (1 << PF1)) == 0) {
+ 12c:	79 99       	sbic	0x0f, 1	; 15
+ 12e:	fe cf       	rjmp	.-4      	; 0x12c <.L2>
+ 130:	fc cf       	rjmp	.-8      	; 0x12a <.L5>
 
-00000130 <_exit>:
- 130:	f8 94       	cli
+00000132 <_exit>:
+ 132:	f8 94       	cli
 
-00000132 <__stop_program>:
- 132:	ff cf       	rjmp	.-2      	; 0x132 <__stop_program>
+00000134 <__stop_program>:
+ 134:	ff cf       	rjmp	.-2      	; 0x134 <__stop_program>

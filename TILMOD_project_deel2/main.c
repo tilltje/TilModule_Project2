@@ -10,7 +10,7 @@ int main(void)
     initialisatie_knopje();
 
     while(1) {
-        if ((PORTF & (1 << PF1)) == 0) {
+        if ((PINF & (1 << PF1)) == 0) {
             NEXT_MOD_PORT |= (1<< NEXT_MOD);
         }
 

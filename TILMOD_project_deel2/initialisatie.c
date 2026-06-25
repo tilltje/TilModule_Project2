@@ -30,6 +30,7 @@ void initialisatie_communicatie(void) {
 
 void initialisatie_knopje(void) {
     DDRF &= ~(1 << PF1);
+    PORTF |= (1 << PF1);
 
 
 }
