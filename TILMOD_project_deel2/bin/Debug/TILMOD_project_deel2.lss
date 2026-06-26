@@ -19,13 +19,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
   7 .debug_abbrev 00000c6f  00000000  00000000  00001035  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_line   000001e8  00000000  00000000  00001ca4  2**0
+  8 .debug_line   000001ea  00000000  00000000  00001ca4  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_frame  00000058  00000000  00000000  00001e8c  2**2
+  9 .debug_frame  00000058  00000000  00000000  00001e90  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .debug_str    0000052d  00000000  00000000  00001ee4  2**0
+ 10 .debug_str    0000052d  00000000  00000000  00001ee8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 11 .debug_line_str 000001b7  00000000  00000000  00002411  2**0
+ 11 .debug_line_str 00000160  00000000  00000000  00002415  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -105,9 +105,9 @@ Disassembly of section .text:
   fc:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 00000100 <initialisatie_communicatie>:
-#include <avr/interrupt.h>
-#include <util/delay.h>
 #include "initialisatie.h"
+
+/// FUNCTIES ///
 
 void initialisatie_communicatie(void) {
     NEXT_MOD_DDR |= (1 << NEXT_MOD); // Output
@@ -136,9 +136,9 @@ void initialisatie_knopje(void) {
  10a:	08 95       	ret
 
 0000010c <main>:
-#include <avr/io.h>
 #include "initialisatie.h"
 
+/// MAIN ///
 int main(void)
 {
     initialisatie_communicatie();

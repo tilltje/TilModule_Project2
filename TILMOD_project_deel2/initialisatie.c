@@ -1,7 +1,10 @@
+/// INCLUDES ///
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "initialisatie.h"
+
+/// FUNCTIES ///
 
 void initialisatie_communicatie(void) {
     NEXT_MOD_DDR |= (1 << NEXT_MOD); // Output
