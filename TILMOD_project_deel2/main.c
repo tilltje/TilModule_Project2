@@ -1,4 +1,5 @@
-/*
+/* Deze code is bedoeld om de wisselopdracht uit te kunnen voeren tijdens de wedstrijd.
+Wanneer de knop op de module wordt ingedrukt, signaleert hij naar de AGV dat die kan gaan rijden.
  */
 
 #include <avr/io.h>
@@ -10,13 +11,10 @@ int main(void)
     initialisatie_knopje();
 
     while(1) {
-        if ((PINF & (1 << PF1)) == 0) {
-            NEXT_MOD_PORT |= (1<< NEXT_MOD);
+        if ((KNOP_PIN & (1 << KNOP)) == 0) { // Knopje ingedrukt
+            NEXT_MOD_PORT |= (1<< NEXT_MOD); // Signaleer naar AGV
         }
 
     }
-
-
-
     return 0;
 }
